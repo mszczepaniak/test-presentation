@@ -238,7 +238,18 @@ ng serve --open
 				
 				<section>
 					<h2>What CLI did</h2>
-					<img class="fragment fade-up" src="https://angular.io/resources/images/devguide/architecture/overview2.png" width="1100" alt="">
+					<p class="fragment" style="color: blue;">
+						bootstrapped the app
+					</p>
+
+					<p class="fragment" style="color: blue;">
+						set up testing, local server, root module and first component
+					</p>
+
+<p class="fragment" style="color: blue;">
+						set up typescript
+					</p>
+
 				</section>
 
 				<section>
@@ -312,14 +323,6 @@ ng serve --open
 					<h2>Component code</h2>
 					<pre>
 						<code data-trim data-noescape>
-						</code>
-					</pre>
-				</section>
-
-				<section>
-					<h2>Component code</h2>
-					<pre>
-						<code data-trim data-noescape>
 @Component({
   selector: 'westie-mate',
   templateUrl: './mate.component.html',
@@ -329,16 +332,6 @@ export class MateComponent{
   constructor() { }
 }
 
-						</code>
-					</pre>
-				</section>
-
-				
-
-				<section>
-					<h2>Component code</h2>
-					<pre>
-						<code data-trim data-noescape>
 						</code>
 					</pre>
 				</section>
@@ -582,6 +575,11 @@ export class ToasterService {
 					<h2>DI code</h2>
 					<pre>
 						<code data-trim data-noescape>
+export class LoginComponent implements OnInit {
+
+  constructor(private router: Router) { }
+}
+
 						</code>
 					</pre>
 				</section>
