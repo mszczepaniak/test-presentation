@@ -223,19 +223,14 @@ ng serve --open
 
 				<section>
 					<h2>Big Picture</h2>
-					<img class="fragment fade-up" src="https://angular.io/resources/images/devguide/architecture/overview2.png" width="1100" alt="">
-				</section>
-
-				<section>
-					<h2>Big Picture</h2>
 					<img class="fragment fade-up" src="https://johnpapa.net/content/images/2016/05/7things.png" width="1100" alt="">
 				</section>
 
 				<section>
-					<h2>Browser Platform?</h2>
-					<img class="fragment fade-up" src="http://www.telerik.com/sfimages/default-source/blogs/telerik-nativescript-png" width="400" alt="">
+					<h2>Big Picture</h2>
+					<img class="fragment fade-up" src="https://angular.io/resources/images/devguide/architecture/overview2.png" width="1100" alt="">
 				</section>
-				
+
 				<section>
 					<h2>What CLI did</h2>
 					<p class="fragment" style="color: blue;">
@@ -250,6 +245,15 @@ ng serve --open
 						set up typescript
 					</p>
 
+					<p class="fragment" style="color: blue;">
+						set up dependencies
+					</p>
+
+				</section>
+
+				<section>
+					<h2>Browser Platform?</h2>
+					<img class="fragment fade-up" src="http://www.telerik.com/sfimages/default-source/blogs/telerik-nativescript-png" width="400" alt="">
 				</section>
 
 				<section>
@@ -468,7 +472,7 @@ export class MateComponent implements OnInit {
 
 				<section>
 					<h2>Module</h2>
-					<img class="fragment fade-up" src="https://jaxenter.de/wp-content/uploads/2016/08/angular2-intro-modules.png" width="800" alt="">
+					<img class="fragment fade-up" src="https://jaxenter.de/wp-content/uploads/2016/08/angular2-intro-modules.png" width="500" alt="">
 				</section>
 				
 				<section>
@@ -942,16 +946,61 @@ this.router.navigateByUrl(`/mates/details/${mate.id}`);
 					<h2>Questions?</h2>
 				</section>
 
+				
+
+				
+
+				
+
 				<section>
-					<h2></h2>
-					<img class="fragment fade-up" src="" width="700" alt="">
+					<h2>* Built in pipes</h2>
+					<p class="fragment">Angular comes with a stock of pipes such as DatePipe, UpperCasePipe, LowerCasePipe, CurrencyPipe, and PercentPipe. They are all available for use in any template.
+</p>
 				</section>
 
 				<section>
-					<h2></h2>
-					<img class="fragment fade-up" src="" width="700" alt="">
+					<h2>* Built in pipes - date</h2>
+					<pre>
+						<code data-trim data-noescape>
+@Component({
+  selector: 'hero-birthday',
+  template: `<p>The hero's birthday is {{ birthday | date }}</p>`
+})
+export class HeroBirthdayComponent {
+  birthday = new Date(1988, 3, 15); // April 15, 1988
+}
+						</code>
+					</pre>
 				</section>
 
+				<section>
+					<h2>* Custom Pipes</h2>
+					<pre>
+						<code data-trim data-noescape>
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({name: 'michal'})
+export class NamePipe implements PipeTransform {
+  transform(value: any): any {
+    if (value === 'westernacher') {
+      return 'michal';
+    }
+      return value;
+  }
+}
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h2>* Pipes</h2>
+					<pre>
+						<code data-trim data-noescape>
+{{ mates | michal}}
+						</code>
+					</pre>
+				</section>
+				
 				
 			</div>
 		</div>
