@@ -1,0 +1,773 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/solarized.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/atom.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<!-- 1. TITLE-->
+				<section>
+					<img src="https://cdn.worldvectorlogo.com/logos/angular-3.svg" alt="" />
+					<h3>Angular Introduction</h3>
+					<p>
+						<small>Created by <a href="https://github.com/mszczepaniak">Michal Szczepaniak</a> / <a href="https://twitter.com/frontend_mike">twitter</a></small>
+					</p>
+                </section>
+
+				<section>
+					<h2>Time Schedule</h2>
+					<p>9:15 - 11:00 Part One</p>
+					<p>11:00 - 11:15 Break</p>
+					<p>11:15 - 12:45 Part Two</p>
+				</section>
+				
+				<!--3. AGENDA-->				
+				<section id="fragments">
+					<h2>Agenda:</h2>
+					<p class="fragment">
+						<ol>
+							<li class="fragment">Creating your first application using Angular CLI</li>
+							<li class="fragment">Angular big picture</li>	
+							<li class="fragment">Modules</li>
+							<li class="fragment">Template syntax</li>
+							<li class="fragment">Services</li>
+							<li class="fragment">Directives</li>
+							<li class="fragment">Routing</li>
+							<li class="fragment">*Forms</li>
+							<li class="fragment">Where to go next</li>
+						</ol>
+					</p>
+					<p class="fragment">can slightly change depending on the time left and amount of questions</p>
+					
+					<aside class="notes">
+						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
+					</aside>
+					<!--<p class="fragment"><Time></Time> constraint: <strong><span  class="fragment highlight-red">01.11.2014</span></strong></p>
+					<p class="fragment">Why was it a problem?</p>
+					<p class="fragment"> <a href="#">8 weeks is not 8 months.</a></p>
+					<p class="fragment">It was 01.09.2014 already</p>-->
+				</section>
+				<!--2. OBJECTIVES-->
+				<section>
+					<h2>Too fast too soon</h2>
+					<img class="fragment fade-up" src="https://pbs.twimg.com/media/CDc7MHAUIAEdhDk.jpg" width="300" alt="">
+					<!--<p class="fragment">Create <span class="fragment " style="color: red;"><strong>completely from scratch</strong></span> mobile version of the Hundehaftpflicht Versicherung Product</p>-->
+				</section>
+
+				<section >
+					<h2>Approach</h2>
+					<p class="fragment">Simple incremental changes</p>
+					<p class="fragment" style="color: red;">Next lesson will build on top of the previous one</p>
+				</section>
+
+				<section >
+					<h2>Stuck?</h2>
+					<p class="fragment">Github Repository: <a href="https://github.com/mszczepaniak/westie-mates">https://github.com/mszczepaniak/westie-mates</a></p> 
+					<p class="fragment">If Stuck -> check out the next commit</p>
+				</section>
+
+				<section>
+					<h2>Let's run it</h2>
+					<pre>
+					<code data-trim data-noescape>
+ng new westie-mates
+					</code>
+				</pre>
+				</section>
+
+				<section >
+					<h2>Angular CLI</h2>
+					<p class="fragment"> <a href="https://cli.angular.io/">The Angular CLI</a>
+					 is a command line interface tool that can create a project, add files, and perform a variety of ongoing development tasks such as testing, bundling, and deployment.
+					</p> 
+					<p class="fragment"><a href="https://webpack.github.io/">Webpack</a> is a popular module bundler, a tool for bundling application source code in convenient chunks and for loading that code from a server into a browser.</p>
+				</section>
+
+				<section>
+					<h2>Webpack</h2>
+					<img class="fragment fade-up" src="https://cdn-images-1.medium.com/max/800/1*ARApCp5sg1c9Vn2yaERF6w.jpeg" width="700" alt="">
+				</section>
+
+				<section>
+					<h2>SPA and MPA: how it works</h2>
+					<img class="fragment fade-up" src="https://i-msdn.sec.s-msft.com/dynimg/IC690875.png" width="500" alt="">
+				</section>
+				
+
+				<section>
+					<h2>SPA vs MPA</h2>
+					<p class="fragment" style="color: green;">SPA advantages over MPA:
+						<ul>
+							<li class="fragment">faster navigation</li>
+							<li class="fragment">improved user experience</li>
+							<li class="fragment">decoupling of front-end and back-end development</li>
+						</ul>
+					</p> 
+				</section>
+				<section>
+					<h2>SPA vs MPA 2</h2>
+
+					<p class="fragment" style="color: red;">SPA disadvantages to MPA:
+						<ul>
+							<li class="fragment">The whole application has to be loaded before start.</li>
+							<li class="fragment">UI code is not compiled, so it’s harder to debug and it’s exposed to potential malicious user</li>
+							<li class="fragment">SEO (search engine optimization) implications; since your pages are built in the browser, the search engine crawler will see a different version of the page than that of your users</li>
+						</ul>
+					</p>
+				</section>
+
+				<section>
+					<h2>SPA vs MPA 3</h2>
+					
+					<p class="fragment">But then you will also find detractors of many of these bullets:
+						<ul>
+							<li class="fragment">Lazy load reduces start up time</li>
+							<li class="fragment">minified and uglified code is almost unreadable</li>	
+							<li class="fragment">by adding tree shacking you get slimmer code to load</li>
+							<li class="fragment">web crawlers (especially Google’s) seem to not be so dumb after all and can load a SPA for proper index</li>
+						</ul>
+					</p>
+
+					<p class="fragment" style="color: blue;">
+						You will also see that every answer to “when to use a SPA vs MPA / MVC / WhateverIAmDoingNow” is “it depends”, but no one will tell you a real recipe.
+					</p>
+				</section>
+
+				<section>
+					<h2>Let's get started</h2>
+					<pre>
+					<code data-trim data-noescape>
+cd westie-mates
+ng serve --open
+					</code>
+				</pre>
+					<p>The ng serve command launches the server, watches your files, and rebuilds the app as you make changes to those files</p>
+				
+				</section>
+
+				<section>
+					<h2>Big Picture</h2>
+					<img class="fragment fade-up" src="https://angular.io/resources/images/devguide/architecture/overview2.png" width="1100" alt="">
+				</section>
+
+				<section>
+					<h2>Browser Platform?</h2>
+					<img class="fragment fade-up" src="http://www.telerik.com/sfimages/default-source/blogs/telerik-nativescript-png" width="400" alt="">
+				</section>
+				
+				<section>
+					<h2>What CLI did</h2>
+					<img class="fragment fade-up" src="https://angular.io/resources/images/devguide/architecture/overview2.png" width="1100" alt="">
+				</section>
+
+				<section>
+					<h2>Typescript</h2>
+					<img class="fragment fade-up" src="https://cdn-images-1.medium.com/max/609/1*8lKzkDJVWuVbqumysxMRYw.png" width="400" alt="">
+				</section>
+
+				<section>
+					<h2>Typescript</h2>
+					<p class="fragment">Javascript that scales.</p>
+					<p class="fragment" style="color: blue">Typed superset of JavaScript that transpiles to plain JavaScript</p>
+					<ul class="fragment">Features (among others):
+						<li class="fragment">types</li>
+						<li class="fragment">interfaces</li>
+						<li class="fragment">generics</li>
+						<li class="fragment">inheritance</li>
+					</ul>
+				</section>
+
+				<section >
+					<h2>Transpilation</h2>
+						<img class="fragment fade-up" src="https://leanpub.com/site_images/essentialtypescript/Introduction----transpiler.png" width="1100" alt="">
+					</p> 
+				</section>
+
+				<section >
+					<h2>Why Transpilation?</h2>
+						<img class="fragment fade-up" src="https://spzone-simpleprogrammer.netdna-ssl.com/wp-content/uploads/2016/05/Transpilation.png" width="700" alt="">
+					</p> 
+				</section>
+
+				<section >
+					<h2>Typescript Playground</h2>
+					<p class="fragment"> <a href="http://www.typescriptlang.org/play/">http://www.typescriptlang.org/play/</a>
+					</p> 
+				</section>
+				
+
+				<section>
+					<h2>Changes from Angular 1</h2>
+					<img class="fragment fade-up" src="http://blog.ionic.io/wp-content/uploads/2015/04/Screenshot-2015-04-02-16.51.16.png" width="500" alt="">
+				</section>
+
+				<section>
+					<h2>Components architecture</h2>
+					<img class="fragment fade-up" src="https://angular.io/resources/images/devguide/architecture/component-tree.png" width="700" alt="">
+				</section>
+
+				<section>
+					<h2>Component details</h2>
+					<img class="fragment fade-up" src="https://angular.io/resources/images/devguide/architecture/template-metadata-component.png" width="300" alt="">
+				</section>
+
+				<section>
+					<h2>@@@ Decorators</h2>
+					<blockquote class="fragment">A function that adds metadata to a class, its members (properties, methods) and function arguments.</blockquote>
+					<p class="fragment">Decorators are a JavaScript language feature, implemented in TypeScript and proposed for ES2016 (also known as ES7). </p>
+					<p class="fragment">@Component() @NgModule() @Injectable()</p>
+					<p class="fragment">@Input() @Output()</p>
+					<p class="fragment">@Directive() @Pipe()</p>
+				</section>
+
+				<section>
+					<h2>Component code</h2>
+					<pre>
+						<code data-trim data-noescape>
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h2>Component code</h2>
+					<pre>
+						<code data-trim data-noescape>
+@Component({
+  selector: 'westie-mate',
+  templateUrl: './mate.component.html',
+  styleUrls: ['./mate.component.css']
+})
+export class MateComponent{
+  constructor() { }
+}
+
+						</code>
+					</pre>
+				</section>
+
+				
+
+				<section>
+					<h2>Component code</h2>
+					<pre>
+						<code data-trim data-noescape>
+						</code>
+					</pre>
+				</section>
+				
+				<section>
+					<h2>Bindings</h2>
+					<img class="fragment fade-up" src="https://hahoangv.files.wordpress.com/2016/05/databinding_1.png?w=616" width="800" alt="">
+				</section>
+
+				<section>
+					<h2>Bindings in practice</h2>
+					<img class="fragment fade-up" src="https://angular.io/resources/images/devguide/architecture/component-databinding.png" width="800" alt="">
+				</section>
+
+				<section>
+					<h2>Bindings in practice 2</h2>
+					<img class="fragment fade-up" src="https://angular.io/resources/images/devguide/architecture/parent-child-binding.png" width="800" alt="">
+				</section>
+
+				<section>
+					<h2>Component with Bindings</h2>
+					<pre>
+						<code data-trim data-noescape>
+@Component({
+  selector: 'westie-mate',
+  templateUrl: './mate.component.html',
+  styleUrls: ['./mate.component.css']
+})
+export class MateComponent implements OnInit {
+  @Input() mate: any;
+  @Input() mateNo: number;
+  @Output() mateSelected = new EventEmitter<any>();
+  constructor() { }
+
+  ngOnInit() {  }
+
+  select(mateName, mateId) {
+    this.mateSelected.emit({name: mateName, id: mateId});
+  }
+}
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h2>Template</h2>
+					<pre>
+						<code data-trim data-noescape>
+&lt;div
+  class=&quot;container&quot;
+&gt;
+  &lt;h3 class=&quot;selectable&quot;&gt;
+    &lt;i class=&quot;fa fa-users padme pull-left&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+    Mate Number {{mateNo}}:
+  &lt;/h3&gt;
+
+  &lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-sm-6&quot;&gt;
+      {{mate.name}}
+    &lt;/div&gt;
+
+    &lt;div class=&quot;col-sm-6&quot;&gt;
+      &lt;button
+        type=&quot;button&quot;
+        class=&quot;btn btn-danger&quot;
+        (click)=&quot;select(mate.name, mate.id)&quot;
+      &gt;
+        &lt;i class=&quot;fa fa-address-book&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+        Click me
+      &lt;/button&gt;
+    &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h2>Module</h2>
+					<img class="fragment fade-up" src="https://angular.io/resources/images/devguide/architecture/library-module.png" width="700" alt="">
+				</section>
+
+				<section>
+					<h2>Module</h2>
+					<blockquote class="fragment">An Angular module class describes how the application parts fit together. Every application has at least one Angular module, the root module that you bootstrap to launch the application. You can call it anything you want. The conventional name is AppModule.</blockquote>
+					<p class="fragment">imports, exports, declarations, bootstrap</p>
+				</section>
+
+				<section>
+					<h2>App Module code</h2>
+					<pre>
+						<code data-trim data-noescape>
+@NgModule({
+  declarations: [
+    AppComponent,
+    NotFoundComponent,
+    LoginComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    MateModule,
+    RouterModule.forRoot(appRoutes)
+  ],
+  providers: [
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { 
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h2>Feature Module code</h2>
+					<pre>
+						<code data-trim data-noescape>
+@NgModule({
+  declarations: [
+    MateComponent,
+    MateListComponent,
+    MateDetailsComponent
+  ],
+  imports: [CommonModule],
+  exports: [MateListComponent],
+  providers: [
+    MateService,
+    ToasterService
+  ]
+})
+export class MateModule {}
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h2>Services and DI</h2>
+					<img class="fragment fade-up" src="https://angular.io/resources/images/devguide/architecture/injector-injects.png" width="1000" alt="">
+				</section>
+
+				<section>
+					<h2>Service code</h2>
+					<pre>
+						<code data-trim data-noescape>
+@Injectable()
+export class MateService {
+  getUsers() {
+    return [];
+  }
+}
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h2>3rd party wrapper service code</h2>
+					<pre>
+						<code data-trim data-noescape>
+
+declare const toastr: any;
+
+@Injectable()
+export class ToasterService {
+  success(message: string, title?: string) {
+    toastr.success(message, title);
+  }
+}
+
+						</code>
+					</pre>
+				</section>
+				
+				<section>
+					<h2>Lifecycle hooks</h2>
+					<img class="fragment fade-up" src="https://ng2.codecraft.tv/components/@assets/lifecycle-hooks.png" width="500" alt="">
+				</section>
+
+				<section>
+					<h2>Dependency Injection</h2>
+					<img class="fragment fade-up" src="https://pbs.twimg.com/media/CaAu3FcW0AADEhB.png" width="1000" alt="">
+				</section>
+
+				<section>
+					<h2>DI code</h2>
+					<pre>
+						<code data-trim data-noescape>
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h2>Http service</h2>
+					<pre>
+					<code data-trim data-noescape>
+getHeroes (): Promise<Hero[]> {
+	return this.http.get(this.heroesUrl)
+				.toPromise()
+				.then(this.extractData)
+				.catch(this.handleError);
+}
+
+addHero (name: string): Promise<Hero> {
+	let headers = new Headers({ 'Content-Type': 'application/json' });
+	let options = new RequestOptions({ headers: headers });
+	
+	return this.http.post(this.heroesUrl, { name }, options)
+			.toPromise()
+			.then(this.extractData)
+			.catch(this.handleError);
+}
+
+private extractData(res: Response) {
+	let body = res.json();
+	return body.data || { };
+}
+
+private handleError (error: Response | any) {
+	// In a real world app, we might use a remote logging infrastructure
+	let errMsg: string;
+	if (error instanceof Response) {
+		const body = error.json() || '';
+		const err = body.error || JSON.stringify(body);
+		errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+	} else {
+		errMsg = error.message ? error.message : error.toString();
+	}
+	console.error(errMsg);
+	return Promise.reject(errMsg);
+}
+					</code>
+				</pre>
+				</section>
+
+				<section>
+					<h2>Directives</h2>
+					<table>
+						<thead>
+							<tr class="fragment">
+								<th>Type</th>
+								<th>Structural</th>
+								<th>Attribute</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="fragment">
+								<td>Description</td>
+								<td class="fragment">alter layout by adding, removing, and replacing elements in DOM</td>
+								<td class="fragment">alter the appearance or behavior of an existing element.
+</td>
+							</tr>
+							<tr class="fragment">
+								<td>Example</td>
+								<td class="fragment">ngFor</td>
+								<td class="fragment">ngModel</td>
+							</tr>
+						</tbody>
+					</table
+				</section>
+				</section>
+
+				<section>
+					<h2>Directives Examples</h2>
+					<pre>
+						<code data-trim data-noescape>
+&lt;div *ngFor=&quot;let mate of mates; let i=index&quot;&gt;&lt;/div&gt;
+&lt;div *ngIf=&quot;mates&quot;&gt;&lt;/div&gt;
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h2>Routing</h2>
+					<img class="fragment fade-up" src="https://i.stack.imgur.com/uKXAq.png" width="400" alt="">
+				</section>
+
+				<section>
+					<h2>Routes</h2>
+					<pre>
+						<code data-trim data-noescape>
+export const appRoutes: Routes = [
+  {path: 'login', component: LoginComponent},
+  {path: 'mates', component: MateListComponent},
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
+];
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h2>Wild card</h2>
+					<pre>
+						<code data-trim data-noescape>
+{path: '**', component: NotFoundComponent}
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h2>Router outlet</h2>
+					<pre>
+						<code data-trim data-noescape>
+&lt;router-outlet&gt;&lt;/&lt;router-outlet&gt;
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h2>Router links</h2>
+					<pre>
+						<code data-trim data-noescape>
+&lt;a
+class=&quot;btn btn-primary btn-lg&quot; 
+routerLink=&quot;/mates&quot;
+&gt;
+&lt;span class=&quot;glyphicon glyphicon-home&quot;&gt;&lt;/span&gt;
+	Take Me Home
+&lt;/a&gt;
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h2>Starting point</h2>
+					<pre>
+						<code data-trim data-noescape>
+
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h2>Params</h2>
+					<pre>
+						<code data-trim data-noescape>
+{path: 'mates/:username', component: MateListComponent},
+{path: 'mates/details/:id', component: MateDetailsComponent},
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h2>Component navigation</h2>
+					<pre>
+						<code data-trim data-noescape>
+this.router.navigateByUrl(`/mates/details/${mate.id}`);
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h2>Forms code</h2>
+					<pre>
+						<code data-trim data-noescape>
+&lt;h1&gt;Login&lt;/h1&gt;
+&lt;div class=&quot;col-md-4&quot;&gt;
+  &lt;form
+    #loginForm=&quot;ngForm&quot;
+    autocomplete=&quot;off&quot;
+    (ngSubmit)=&quot;login(loginForm.value)&quot;
+  &gt;
+    &lt;div
+      class=&quot;form-group&quot;
+      novalidate
+    &gt;
+      &lt;label for=&quot;userName&quot;&gt;User Name:&lt;/label&gt;
+
+      &lt;em
+        class=&quot;text-danger pull-right&quot;
+        *ngIf=&quot;loginForm.controls.username?.invalid &amp;&amp;loginForm.controls.username?.touched&quot;
+      &gt;
+        Required
+      &lt;/em&gt;
+
+      &lt;input
+        id=&quot;username&quot;
+        required
+        [(ngModel)]=username
+        name=&quot;username&quot;
+        type=&quot;text&quot;
+        class=&quot;form-control&quot;
+        placeholder=&quot;User Name...&quot;
+      /&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;form-group&quot; &gt;
+      &lt;label for=&quot;password&quot;&gt;Password:&lt;/label&gt;
+
+      &lt;em
+        class=&quot;text-danger pull-right&quot;
+        *ngIf=&quot;loginForm.controls.password?.invalid &amp;&amp;loginForm.controls.password?.touched&quot;
+      &gt;
+        Required
+      &lt;/em&gt;
+
+      &lt;input
+        name=&quot;password&quot;
+        required
+        [(ngModel)]=password
+        id=&quot;password&quot;
+        type=&quot;password&quot;
+        class=&quot;form-control&quot;
+        placeholder=&quot;Password...&quot;
+      /&gt;
+    &lt;/div&gt;
+
+    &lt;button
+      type=&quot;submit&quot;
+      [disabled]=&quot;loginForm.invalid&quot;
+      class=&quot;btn btn-primary&quot;
+    &gt;
+      Login
+    &lt;/button&gt;
+
+    &lt;button
+      type=&quot;button&quot;
+      class=&quot;btn btn-default&quot;
+    &gt;
+      Cancel
+    &lt;/button&gt;
+  &lt;/form&gt;
+&lt;/div&gt;	
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h2>Styleguide</h2>
+					<p><a href="https://angular.io/styleguide">https://angular.io/styleguide</a></p>
+				</section>
+				
+				<section>
+					<h2>Where to go next?</h2>
+					<p><a href="https://github.com/AngularClass/awesome-angular">Awesome angular repo</a></p>
+					<p><a href="https://blog.nrwl.io/essential-angular-7-blog-posts-book-7f7d9923773d">Victor Savkin series</a></p>
+				
+				</section>
+
+				<section>
+					<h2>Blogs to follow</h2>
+					<p>Todd Motto</p>
+					<p>Victor Savkin</p>
+					<p>John Papa</p>
+					<p>Thoughtram</p>
+				</section>
+
+				<section>
+					<h2>Topics not covered</h2>
+					<p>RxJS</p>
+					<p>Redux and ngrx</p>
+					<p>Pipes</p>
+					<p>Testing</p>
+					<p>Advanced routing with guards</p>
+					<p>Reactive forms</p>
+				</section>
+
+				<section>
+					<h2>Questions?</h2>
+				</section>
+
+				<section>
+					<h2></h2>
+					<img class="fragment fade-up" src="" width="700" alt="">
+				</section>
+
+				<section>
+					<h2></h2>
+					<img class="fragment fade-up" src="" width="700" alt="">
+				</section>
+
+				
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			
+			Reveal.initialize({
+				history: true,
+				fragments: true,
+				transition: 'concave',
+                center: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+			Reveal.configure({ slideNumber: 'c/t' });
+		</script>
+	</body>
+</html>
