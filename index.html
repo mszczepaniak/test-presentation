@@ -103,6 +103,57 @@ ng new westie-mates
 				</section>
 
 				<section>
+					<h2>Angular CLI</h2>
+					<table>
+						<thead>
+							<tr class="fragment">
+								<th>Component</th>
+								<th>ng g component my-new-component
+</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="fragment">
+								<td>Directive</td>
+								<td>ng g directive my-new-directive</td>
+							</tr>
+							<tr class="fragment">
+								<td>Pipe</td>
+								<td>ng g pipe my-new-pipe</td>
+							</tr>
+
+							<tr class="fragment">
+								<td>Pipe</td>
+								<td>ng g pipe my-new-pipe</td>
+							</tr>
+
+							<tr class="fragment">
+								<td>Service</td>
+								<td>ng g service my-new-service
+</td>
+							</tr>
+
+							<tr class="fragment">
+								<td>Interface</td>
+								<td>ng g interface my-new-interface
+</td>
+							</tr>
+
+							<tr class="fragment">
+								<td>Module</td>
+								<td>ng g module my-module</td>
+							</tr>
+
+							<tr class="fragment">
+								<td>Pipe</td>
+								<td>ng g pipe my-new-pipe</td>
+							</tr>
+						</tbody>
+					</table
+				</section>
+				</section>
+
+				<section>
 					<h2>Webpack</h2>
 					<img class="fragment fade-up" src="https://cdn-images-1.medium.com/max/800/1*ARApCp5sg1c9Vn2yaERF6w.jpeg" width="700" alt="">
 				</section>
@@ -196,6 +247,13 @@ ng serve --open
 					</ul>
 				</section>
 
+				<section>
+					<h2>Typescript</h2>
+					<blockquote class="fragment">“We love TypeScript for many things… With TypeScript, several of our team members have said things like ‘I now actually understand most of our own code!’ because they can easily traverse it and understand relationships much better. And we’ve found several bugs via TypeScript’s checks.”
+</blockquote>					
+<p class="fragment">— Brad Green, Engineering Director — Angular</p>
+				</section>
+									
 				<section >
 					<h2>Transpilation</h2>
 						<img class="fragment fade-up" src="https://leanpub.com/site_images/essentialtypescript/Introduction----transpiler.png" width="1100" alt="">
@@ -350,15 +408,40 @@ export class MateComponent implements OnInit {
 
 				<section>
 					<h2>Module</h2>
-					<img class="fragment fade-up" src="https://angular.io/resources/images/devguide/architecture/library-module.png" width="700" alt="">
-				</section>
-
-				<section>
-					<h2>Module</h2>
 					<blockquote class="fragment">An Angular module class describes how the application parts fit together. Every application has at least one Angular module, the root module that you bootstrap to launch the application. You can call it anything you want. The conventional name is AppModule.</blockquote>
 					<p class="fragment">imports, exports, declarations, bootstrap</p>
 				</section>
 
+				<section>
+					<h2>Module</h2>
+					<img class="fragment fade-up" src="https://image.slidesharecdn.com/5iggik1bq1nrhk9mtzqs-signature-ac4d76cd8d3c3fe5514277e8f4652481914a804ba35c8624b52c92245310a4e2-poli-161201105708/95/understanding-angular-2-shmuela-jacobs-codemotion-milan-2016-38-638.jpg?cb=1480590045" width="700" alt="">
+				</section>
+
+				<section>
+					<h2>Declarations</h2>
+					<p class="fragment">the view classes that belong to this module. Angular has three kinds of view classes: components, directives, and pipes</p>
+				</section>
+
+				<section>
+					<h2>Exports</h2>
+					<p class="fragment">the subset of declarations that should be visible and usable in the component templates of other modules</p>
+				</section>
+
+				<section>
+					<h2>Imports</h2>
+					<p class="fragment">other modules whose exported classes are needed by component templates declared in this module</p>
+				</section>
+
+				<section>
+					<h2>Bootstrap</h2>
+					<p class="fragment">the main application view, called the root component, that hosts all other app views. Only the root module should set this bootstrap property</p>
+				</section>
+
+				<section>
+					<h2>Module</h2>
+					<img class="fragment fade-up" src="https://jaxenter.de/wp-content/uploads/2016/08/angular2-intro-modules.png" width="800" alt="">
+				</section>
+				
 				<section>
 					<h2>App Module code</h2>
 					<pre>
@@ -445,11 +528,6 @@ export class ToasterService {
 				</section>
 				
 				<section>
-					<h2>Lifecycle hooks</h2>
-					<img class="fragment fade-up" src="https://ng2.codecraft.tv/components/@assets/lifecycle-hooks.png" width="500" alt="">
-				</section>
-
-				<section>
 					<h2>Dependency Injection</h2>
 					<img class="fragment fade-up" src="https://pbs.twimg.com/media/CaAu3FcW0AADEhB.png" width="1000" alt="">
 				</section>
@@ -460,6 +538,11 @@ export class ToasterService {
 						<code data-trim data-noescape>
 						</code>
 					</pre>
+				</section>
+
+				<section>
+					<h2>Lifecycle hooks</h2>
+					<img class="fragment fade-up" src="https://ng2.codecraft.tv/components/@assets/lifecycle-hooks.png" width="500" alt="">
 				</section>
 
 				<section>
@@ -538,13 +621,14 @@ private handleError (error: Response | any) {
 						<code data-trim data-noescape>
 &lt;div *ngFor=&quot;let mate of mates; let i=index&quot;&gt;&lt;/div&gt;
 &lt;div *ngIf=&quot;mates&quot;&gt;&lt;/div&gt;
+[(ngModel)]=username
 						</code>
 					</pre>
 				</section>
 
 				<section>
 					<h2>Routing</h2>
-					<img class="fragment fade-up" src="https://i.stack.imgur.com/uKXAq.png" width="400" alt="">
+					<img class="fragment fade-up" src="https://i.stack.imgur.com/uKXAq.png" width="800" alt="">
 				</section>
 
 				<section>
@@ -693,6 +777,30 @@ this.router.navigateByUrl(`/mates/details/${mate.id}`);
     &lt;/button&gt;
   &lt;/form&gt;
 &lt;/div&gt;	
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h2>Forms</h2>
+					<pre>
+						<code data-trim data-noescape>
+&lt;form
+    #loginForm=&quot;ngForm&quot;
+    (ngSubmit)=&quot;login(loginForm.value)&quot;
+  &gt;
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h2>Validation</h2>
+					<pre>
+						<code data-trim data-noescape>
+&lt;form
+    #loginForm=&quot;ngForm&quot;
+    (ngSubmit)=&quot;login(loginForm.value)&quot;
+  &gt;
 						</code>
 					</pre>
 				</section>
