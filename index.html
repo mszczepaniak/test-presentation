@@ -216,8 +216,18 @@ ng serve --open
 				</section>
 
 				<section>
+					<h2>Why Angular?</h2>
+					<img class="fragment fade-up" src="http://blogs.msmvps.com/deborahk/files/2016/04/image9.png" width="1100" alt="">
+				</section>
+
+				<section>
 					<h2>Big Picture</h2>
 					<img class="fragment fade-up" src="https://angular.io/resources/images/devguide/architecture/overview2.png" width="1100" alt="">
+				</section>
+
+				<section>
+					<h2>Big Picture</h2>
+					<img class="fragment fade-up" src="https://johnpapa.net/content/images/2016/05/7things.png" width="1100" alt="">
 				</section>
 
 				<section>
@@ -488,6 +498,11 @@ export class AppModule {
 export class MateModule {}
 						</code>
 					</pre>
+				</section>
+
+				<section>
+					<h2>Sample module architecture</h2>
+					<img class="fragment fade-up" src="http://www.rightincode.com/image.axd?picture=SpeakerRegisterArchitecture_2.png" width="1000" alt="">
 				</section>
 
 				<section>
@@ -797,10 +812,12 @@ this.router.navigateByUrl(`/mates/details/${mate.id}`);
 					<h2>Validation</h2>
 					<pre>
 						<code data-trim data-noescape>
-&lt;form
-    #loginForm=&quot;ngForm&quot;
-    (ngSubmit)=&quot;login(loginForm.value)&quot;
-  &gt;
+&lt;em
+        class=&quot;text-danger pull-right&quot;
+        *ngIf=&quot;loginForm.controls.username?.invalid &amp;&amp;loginForm.controls.username?.touched&quot;
+      &gt;
+        Required
+      &lt;/em&gt;
 						</code>
 					</pre>
 				</section>
