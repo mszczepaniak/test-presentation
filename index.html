@@ -47,16 +47,17 @@
 						<ol>
 							<li class="fragment">Creating your first application using Angular CLI</li>
 							<li class="fragment">Angular big picture</li>	
+							<li class="fragment">Components</li>
 							<li class="fragment">Modules</li>
 							<li class="fragment">Template syntax</li>
 							<li class="fragment">Services</li>
 							<li class="fragment">Directives</li>
 							<li class="fragment">Routing</li>
-							<li class="fragment">*Forms</li>
+							<li class="fragment">Forms</li>
 							<li class="fragment">Where to go next</li>
 						</ol>
 					</p>
-					<p class="fragment">can slightly change depending on the time left and amount of questions</p>
+					<p class="fragment">can slightly change depending on the time left and questions</p>
 					
 					<aside class="notes">
 						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
@@ -417,6 +418,20 @@ export class MateComponent implements OnInit {
 				</section>
 
 				<section>
+					<h2>Interpolation</h2>
+					<pre>
+						<code data-trim data-noescape>
+{{ mate.name }}
+
+{{ 2+2 }}
+
+{{ getBeer() }}
+						</code>
+					</pre>
+					<p class="fragment">You use interpolation to weave calculated strings into the text between HTML element tags and within attribute assignments</p>
+				</section>
+
+				<section>
 					<h2>Module</h2>
 					<blockquote class="fragment">An Angular module class describes how the application parts fit together. Every application has at least one Angular module, the root module that you bootstrap to launch the application. You can call it anything you want. The conventional name is AppModule.</blockquote>
 					<p class="fragment">imports, exports, declarations, bootstrap</p>
@@ -558,6 +573,12 @@ export class ToasterService {
 				<section>
 					<h2>Lifecycle hooks</h2>
 					<img class="fragment fade-up" src="https://ng2.codecraft.tv/components/@assets/lifecycle-hooks.png" width="500" alt="">
+				</section>
+
+				<section>
+					<h2>Lifecycle hooks</h2>
+					<p class="fragment">Angular creates, updates, and destroys components as the user moves through the application. Your app can take action at each moment in this lifecycle through optional lifecycle hooks, like ngOnInit().
+</p>
 				</section>
 
 				<section>
@@ -820,6 +841,42 @@ this.router.navigateByUrl(`/mates/details/${mate.id}`);
       &lt;/em&gt;
 						</code>
 					</pre>
+				</section>
+
+				<section>
+					<h2>Form state</h2>
+					<table>
+						<thead>
+							<tr class="fragment">
+								<th>State</th>
+								<th>Class if true	</th>
+								<th>Class if false
+</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="fragment">
+								<td>The control has been visited.	</td>
+								<td class="fragment">ng-touched	</td>
+								<td class="fragment">ng-untouched
+</td>
+</td>
+							</tr>
+							<tr class="fragment">
+								<td class="fragment">The control's value has changed.	</td>
+								<td class="fragment">ng-dirty	</td>
+								<td class="fragment">ng-pristine
+</td>
+							</tr>
+							<tr class="fragment">
+								<td class="fragment">The control's value is valid.	</td>
+								<td class="fragment">ng-valid	</td>
+								<td class="fragment">ng-invalid
+</td>
+							</tr>
+						</tbody>
+					</table
+				</section>
 				</section>
 
 				<section>
